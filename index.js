@@ -27,6 +27,7 @@ async function run() {
     await client.connect();
     const scoreCollection = client.db("cricketDb").collection("score");
     const resultCollection = client.db("cricketDb").collection("result");
+    const newsCollection = client.db("cricketDb").collection("news");
 
 
     app.get('/score', async(req, res) =>{
@@ -36,6 +37,10 @@ async function run() {
 
     app.get('/result', async(req, res)=>{
         const result = await resultCollection.find().toArray();
+        res.send(result)
+    })
+    app.get('/news', async(req, res)=>{
+        const result = await newsCollection.find().toArray();
         res.send(result)
     })
     // Send a ping to confirm a successful connection
